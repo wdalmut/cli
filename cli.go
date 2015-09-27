@@ -24,20 +24,22 @@ func NewCli(app, version string) *Cli {
 }
 
 func (c *Cli) isVersion() bool {
-	for _, flag := range c.Args {
-		if flag == "-v" || flag == "--version" || flag == "-version" {
-			return true
-		}
+	flag := Parse(c.Args)
+	if flag.Bool("-v", "--version", "-version") {
+		return true
 	}
 
 	return false
 }
 
 func (c *Cli) isHelp() bool {
-	for _, flag := range c.Args {
-		if flag == "-h" || flag == "--help" || flag == "-help" {
-			return true
-		}
+	if len(c.Args) == 0 {
+		return true
+	}
+
+	flag := Parse(c.Args)
+	if flag.Bool("-h", "--help", "-help", "?") {
+		return true
 	}
 
 	return false

@@ -20,7 +20,7 @@ func main() {
                 Synopsis: "A short help message",
                 Run: func(args []string) int {
                     flag := cli.Flag(args)
-                    opt := flag.String("-v", "default-val")
+                    opt := flag.String("default value", "-f", "--force", "-force")
 
                     // continue
 

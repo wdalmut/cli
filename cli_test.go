@@ -43,6 +43,7 @@ func TestHelpHelper(t *testing.T) {
 		{[]string{"-help"}, true},
 		{[]string{"-v"}, false},
 		{[]string{"--version"}, false},
+		{[]string{}, true},
 	}
 
 	for _, tt := range suite {

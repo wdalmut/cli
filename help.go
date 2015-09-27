@@ -14,11 +14,11 @@ func BasicHelpFunc(app string) HelpFunc {
 		buffer.WriteString(fmt.Sprintf("usage: %s [--version] [--help] <command> [<args>]", app))
 
 		if factories != nil {
-			buffer.WriteString("\n\n")
+			buffer.WriteString("\n\nCOMMANDS:\n")
 
 			for name, factory := range factories {
 				command := factory()
-				buffer.WriteString(fmt.Sprintf("%s %s\n", name, command.Synopsis()))
+				buffer.WriteString(fmt.Sprintf("  %s %s\n", name, command.Synopsis()))
 			}
 		}
 
