@@ -1,5 +1,7 @@
 # Cli
 
+[![Build Status](https://travis-ci.org/wdalmut/cli.svg?branch=master)](https://travis-ci.org/wdalmut/cli)
+
 A simple Cli package (merge of other CLI ideas)
 
 ```go
