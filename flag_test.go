@@ -67,6 +67,29 @@ func TestSimpleStringExtractions(t *testing.T) {
 	}
 }
 
+func TestSimpleIntsExtractions(t *testing.T) {
+	data := []struct {
+		args  []string
+		flag  string
+		value int
+		out   int
+	}{
+		{[]string{"w", "2"}, "w", 5, 2},
+		{[]string{}, "w", 5, 5},
+		{[]string{"w", "invalid"}, "w", 5, 5}, //Return default on invalid
+	}
+
+	for _, tt := range data {
+		flag := Parse(tt.args)
+
+		res := flag.Int(tt.value, tt.flag)
+
+		if res != tt.out {
+			t.Errorf("Invalid flag, wants %d got %d", tt.out, res)
+		}
+	}
+}
+
 func TestAddressStringWithDifferentKeys(t *testing.T) {
 	data := []struct {
 		args  []string

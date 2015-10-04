@@ -1,5 +1,7 @@
 package cli
 
+import "strconv"
+
 type Flag struct {
 	args []string
 }
@@ -29,6 +31,27 @@ func (f Flag) StringSlice(keys ...string) []string {
 	}
 
 	return slice
+}
+
+// Return an integer flag value
+// If an error occurs, the function will return the default value
+// Example:
+//   - flag.Int(5, "-x", "--extract")
+func (f Flag) Int(value int, keys ...string) int {
+	for idx, elem := range f.args {
+		for _, key := range keys {
+			if elem == key {
+				i, err := strconv.Atoi(f.args[idx+1])
+				if err != nil {
+					return value
+				}
+
+				return i
+			}
+		}
+	}
+
+	return value
 }
 
 func (f Flag) String(value string, keys ...string) string {
